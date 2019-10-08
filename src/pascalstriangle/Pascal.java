@@ -11,8 +11,6 @@ package pascalstriangle;
  */
 public class Pascal {
     private int [][]pasTri ; // 2-D array for Pascals' triangle
-    private int column ; // counter for columns
-    private int rows ; // counter for the rows
     private int limitOfColRows ; // limit of rows and columns
     
     /**
@@ -22,21 +20,35 @@ public class Pascal {
      */
     public void Pascal(int neededRows)
     {
+        int columns = 1;
         pasTri = new int [neededRows][] ; // initialize the pyramid
         limitOfColRows = neededRows ; // set the limit
         
-        // set the first three values in the Pascal's Triangle as they 
-        // are just constants.
+        // set the first value in the Pascal's Triangle as they 
+        // are just constant.
+        pasTri [0][0] = 1 ; // first value is 1
         
-        pasTri [rows][column] = 1 ; // first value is 1
-        this.rows ++ ;
-        pasTri [rows] [column] = 1 ;
-        this.column ++ ;        
+        // for loop with a condition
+        for (int r = 1 ; r < limitOfColRows ; r++)
+        {
+            for (int c = 0 ; c <= columns ; c++ )
+            {
+                if ( c == columns || c == 0 )
+                {
+                   pasTri [r][c] = 1;
+                }
+                else
+                {
+                    pasTri [r][c] = pasTri [r-1][c] + pasTri [r-1][c-1];
+                }
+            }
+            columns++;
+        }
     }
    
     public String toString()
     {
-        
+        return null;
     }
     
 }
