@@ -1,19 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * i certify that this is my original work
+ * Byron De Paz PID 3999061
  */
 package pascalstriangle;
 
-/**
- *
- * @author byrondepaz
- */
 public class Pascal {
     private int[][] pasTri ; // 2-D array for Pascals' triangle
+    
     /**
      * Pascal's triangle can be used to determine the expanded pattern of 
-     * coefficients or in this case, display a pretty pyramid.
+     * coefficients.
      * @param neededRows Number of rows the pyramid to produce.
      */
     public Pascal(int neededRows)
@@ -21,6 +17,10 @@ public class Pascal {
         pasTri = new int[neededRows][] ;      
     }
     
+    /**
+     * calculate the values within the pascal triangle until the number of
+     * rows is reached.
+     */
     public void generateTri ()
     {
         // generate the pascal triangle
@@ -52,23 +52,34 @@ public class Pascal {
            
         }
     }
-   
+    
+    /**
+     * Return a formated string of all the values in the pyramid.
+     * @return formated string of all the rows and it's values
+     */
     @Override
     public String toString()
     {
         int outerWidth = 30 ;// the first number should be 30 spaces in
         int innerWidth = 4 ; // inner width spaces between each number
-        String output = "";
+        String output = ""; // initiate String with an empty string.
         for (int i = 0; i < pasTri.length ; i++)
         {
-           // first 
+           // first number should be centered at 30 spaces
            output += System.out.printf("%" + outerWidth + "d", pasTri[i][0]);
+           
+           // print each value in that row aside from the first one
            for(int r = 1 ; r < pasTri[i].length ; r++)
            {
+              // print the values with innerWidth spaces formated
              output += System.out.printf("%" + innerWidth + "d", pasTri[i][r]);
            }
-           output += System.out.printf("%n") ;
-           outerWidth -= 2 ; // remove 3 spaces
+           output += System.out.printf("%n") ; // print that new lines
+           
+           // since the assigment calls for max of 13 rows we pick a number
+           // that can divide our 30 spaces sufficiently to make at least 13
+           // which is why i chose 2, 30 / 2 is 15, 15 possible rows.
+           outerWidth -= 2 ; // remove 2 spaces
         }
         
         return output;
