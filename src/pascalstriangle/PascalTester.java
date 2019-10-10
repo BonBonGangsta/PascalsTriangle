@@ -15,7 +15,7 @@ public class PascalTester {
         boolean keepPlaying = true;
         while (keepPlaying)
         {
-          // the code for this confirmation can be seen in JOption Pane javadoc
+          // the code for this confirmation can be seen in JOptionPane javadoc
           int response = JOptionPane.showConfirmDialog(null,
                   "Do you want to calculate a Pascal Triangle?", "Confirm",
                   JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -39,7 +39,6 @@ public class PascalTester {
                 {
                 // generate the pascal triangle     
                 Pascal triangle = new Pascal(rows);
-                triangle.generateTri(); // calculate the values
                 triangle.toString(); // print them
                 }
                 else

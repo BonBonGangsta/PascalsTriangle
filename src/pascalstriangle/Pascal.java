@@ -14,14 +14,15 @@ public class Pascal {
      */
     public Pascal(int neededRows)
     {
-        pasTri = new int[neededRows][] ;      
+        pasTri = new int[neededRows][] ;  
+        generateTri();
     }
     
     /**
      * calculate the values within the pascal triangle until the number of
      * rows is reached.
      */
-    public void generateTri ()
+    private void generateTri ()
     {
         // generate the pascal triangle
         // the first and last value in each row is 1
