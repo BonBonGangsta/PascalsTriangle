@@ -10,7 +10,7 @@ package pascalstriangle;
  * @author byrondepaz
  */
 public class Pascal {
-    private int [][]pasTri ; // 2-D array for Pascals' triangle
+    private int pasTri [][] ; // 2-D array for Pascals' triangle
     private int limitOfColRows ; // limit of rows and columns
     
     /**
@@ -18,7 +18,7 @@ public class Pascal {
      * coefficients or in this case, display a pretty pyramid.
      * @param neededRows Number of rows the pyramid to produce.
      */
-    public void Pascal(int neededRows)
+    public Pascal(int neededRows)
     {
         int columns = 1; // starts at 1 since the zero is going to be constant
         pasTri = new int [neededRows][] ; // initialize the pyramid
@@ -52,8 +52,18 @@ public class Pascal {
         }
     }
    
+    @Override
     public String toString()
     {
+        for (int i = 0; i < 5 ; i++)
+        {
+            for(int r = 0 ; r <= pasTri[i].length ; r++)
+            {
+                System.out.print(" " + pasTri[i][r] + " ") ;
+            }
+            System.out.print("\n") ;
+        }
+        
         return null;
     }
     
