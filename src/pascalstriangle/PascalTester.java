@@ -16,8 +16,8 @@ public class PascalTester {
     public static void main(String[] args)
     {
         // create the pascal triangle
-        Pascal triangle = new Pascal(5) ;
-        
+        Pascal triangle = new Pascal(13) ;
+        triangle.generateTri();
         triangle.toString() ;
     
     }

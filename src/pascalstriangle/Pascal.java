@@ -10,9 +10,7 @@ package pascalstriangle;
  * @author byrondepaz
  */
 public class Pascal {
-    private int pasTri [][] ; // 2-D array for Pascals' triangle
-    private int limitOfColRows ; // limit of rows and columns
-    
+    private int[][] pasTri ; // 2-D array for Pascals' triangle
     /**
      * Pascal's triangle can be used to determine the expanded pattern of 
      * coefficients or in this case, display a pretty pyramid.
@@ -20,51 +18,60 @@ public class Pascal {
      */
     public Pascal(int neededRows)
     {
-        int columns = 1; // starts at 1 since the zero is going to be constant
-        pasTri = new int [neededRows][] ; // initialize the pyramid
-        limitOfColRows = neededRows ; // set the limit
+        pasTri = new int[neededRows][] ;      
+    }
+    
+    public void generateTri ()
+    {
+        // generate the pascal triangle
+        // the first and last value in each row is 1
+        // the numbers between are based off the sum of the two numbers 
+        // in the row above and the number to the left of it
         
-        // set the first value in the Pascal's Triangle as they 
-        // are just constant.
-        pasTri [0][0] = 1 ; // first value is 1
-        
-        // for loop with a condition for the roles to run for the number of
-        // rows requested by the user
-        for (int r = 1 ; r < limitOfColRows ; r++)
+        // we are going to traverse the pyrmaid by rows
+        for (int row = 0 ; row < pasTri.length ; row ++)
         {
-            // each row above row 0 is different so we must use a dynamic
-            // for loop to add the values into their respective columns
-            for (int c = 0 ; c <= columns ; c++ )
-            {
-                // the first and last columns get the constant value of 1
-                if ( c == columns || c == 0 )
-                {
-                   pasTri [r][c] = 1;
-                }
-                else
-                {
-                    // get the sum of the previous rows, same column and
-                    // previous column
-                    pasTri [r][c] = pasTri [r-1][c] + pasTri [r-1][c-1];
-                }
-            }
-            columns++; // add to the columns
+           // initialize the array within the array... arrayception
+           pasTri[row] = new int[row + 1] ; 
+           
+           //first value in the array is always 1.
+           pasTri[row][0] = 1 ; // sorry for the zero 
+           
+           // last value is alwasy 1 too
+           pasTri[row][row] = 1 ;
+           
+           // calculate the columns between the two 1s.
+           for (int columns = 1; columns < row ; columns++ )
+           {
+               // the value is calculated from the number directly above
+               // plus the number to the left in the array not in the 
+               // pyramid...
+               pasTri[row][columns] = pasTri[row-1][columns] 
+                                      + pasTri[row -1][columns -1] ;
+           }
+           
         }
     }
    
     @Override
     public String toString()
     {
-        for (int i = 0; i < 5 ; i++)
+        int outerWidth = 30 ;// the first number should be 30 spaces in
+        int innerWidth = 4 ; // inner width spaces between each number
+        String output = "";
+        for (int i = 0; i < pasTri.length ; i++)
         {
-            for(int r = 0 ; r <= pasTri[i].length ; r++)
-            {
-                System.out.print(" " + pasTri[i][r] + " ") ;
-            }
-            System.out.print("\n") ;
+           // first 
+           output += System.out.printf("%" + outerWidth + "d", pasTri[i][0]);
+           for(int r = 1 ; r < pasTri[i].length ; r++)
+           {
+             output += System.out.printf("%" + innerWidth + "d", pasTri[i][r]);
+           }
+           output += System.out.printf("%n") ;
+           outerWidth -= 2 ; // remove 3 spaces
         }
         
-        return null;
+        return output;
     }
     
 }
